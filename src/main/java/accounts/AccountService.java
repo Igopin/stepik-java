@@ -1,13 +1,17 @@
 package accounts;
 
+import db.DBService;
+
 import java.util.Map;
 import java.util.HashMap;
 
 public class AccountService {
+    private final DBService dbService;
     private final Map<String, UserProfile> loginToProfile;
     private final Map<String, UserProfile> sessionIdToProfile;
 
     public AccountService() {
+        dbService = new DBService();
         loginToProfile = new HashMap<>();
         sessionIdToProfile = new HashMap<>();
     }
