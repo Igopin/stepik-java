@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.String;
 
-public class RequestServlet extends HttpServlet {
+public class MirrorServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

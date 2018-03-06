@@ -7,21 +7,29 @@ import java.util.HashMap;
 
 public class AccountService {
     private final DBService dbService;
-    private final Map<String, UserProfile> loginToProfile;
     private final Map<String, UserProfile> sessionIdToProfile;
 
     public AccountService() {
         dbService = new DBService();
-        loginToProfile = new HashMap<>();
         sessionIdToProfile = new HashMap<>();
     }
 
     public void addNewUser(UserProfile newUser) {
-        loginToProfile.put(newUser.getLogin(), newUser);
+        try {
+            dbService.addUser(newUser.getLogin(), newUser.getPassword());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public UserProfile getUserByLogin(String login) {
-        return loginToProfile.get(login);
+        try {
+            return dbService.getUserByLogin(login).getUserProfile();
+        } catch (Exception e) {
+            System.out.println("ERROR");
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public UserProfile getUserBySessionId(String sessionId) {

@@ -21,7 +21,6 @@ public class SignInServlet extends HttpServlet {
         UserProfile profile = this.accountService.getUserByLogin(req.getParameter("login"));
         String password = req.getParameter("password");
 
-
         if (profile != null && profile.getPassword().equals(password)) {
             resp.getWriter().println("Authorized: " + profile.getLogin());
             resp.setStatus(HttpServletResponse.SC_OK);
